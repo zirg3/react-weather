@@ -12,9 +12,9 @@ const Search = ({load, update}) => {
 
     useEffect(() =>{
      async function showCity  () {
-        let respons = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${info}&limit=1&appid=${apikey}`)
+        let respons = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${info}&limit=1&appid=${apikey}`)
         let city = await respons.json()
-        let respons2 = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${city[0].lat}&lon=${city[0].lon}&units=metric&lang=ru&appid=${apikey}`)
+        let respons2 = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${city[0].lat}&lon=${city[0].lon}&units=metric&lang=ru&appid=${apikey}`)
         let weather = await  respons2.json()
         let respons3 = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city[0].lat}&longitude=${city[0].lon}&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,rain_sum,windspeed_10m_max&current_weather=true&timezone=auto`)
         let sevenDay = await respons3.json()
